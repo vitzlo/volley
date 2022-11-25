@@ -3,6 +3,7 @@ package volley.manager;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.reaction.ReactionEmoji;
+import volley.model.retcon.RetconResponder;
 import volley.responder.Responder;
 import volley.response.EmptyResponse;
 import volley.response.Response;
@@ -13,7 +14,9 @@ public class DefaultManager implements Manager {
     private final List<Responder> responders;
 
     public DefaultManager() {
-        this.responders = List.of();
+        this.responders = List.of(
+                new RetconResponder()
+        );
     }
 
     @Override
