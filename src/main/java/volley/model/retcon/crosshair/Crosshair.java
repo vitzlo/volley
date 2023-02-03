@@ -8,4 +8,6 @@ public interface Crosshair {
     Crosshair adjustSetting(CrosshairSetting setting, int newValue);
 
     String getCode();
+
+    CrosshairVersion getVersion();
 }

@@ -30,11 +30,13 @@ public abstract class CommandResponder implements Responder {
 
     @Override
     public Response respondToMessage(Message message, String text) {
-        String command = (!text.contains(" ") ? text : text.substring(0, text.indexOf(" "))).toLowerCase();
+        String command = (!text.matches(".+ .+") ? text : text.substring(0, text.indexOf(" "))).toLowerCase();
         String params = !text.matches(".+ .+") ? "" : text.substring(text.indexOf(" ") + 1);
 
-        // TODO: do we care about case
+        System.out.println("respond to message");
+        // TODO: do we care about case (if so change at above definition)
         if (commands.containsKey(command)) {
+            System.out.println("found cmd");
             return commands.get(command).apply(params);
         } else {
             return new EmptyResponse();

@@ -28,15 +28,18 @@ public class DefaultManager implements Manager {
         }
 
         for (Responder responder : responders) {
+            System.out.println("with responder");
             Response response = new EmptyResponse();
             if (!responder.requiresPrefix()) {
                 response = responder.respondToMessage(message, text);
             } else if (text.startsWith(prefix)) {
                 String prunedText = prefix.length() == text.length() ? "" : text.substring(prefix.length());
+                System.out.println("manager found prefix in msg, pruned = " + prunedText);
                 response = responder.respondToMessage(message, prunedText);
             }
 
             if (!response.isEmpty()) {
+                System.out.println("branch bad");
                 return response;
             }
         }

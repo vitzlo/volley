@@ -17,8 +17,7 @@ import java.util.Map;
 public class RetconResponder extends CommandResponder {
     private final Map<String, Crosshair> crosshairs;
 
-    private static final String SEARCH_NOT_FOUND_MSG = "Crosshair not found. Check your spelling " +
-            "or try a more general query.";
+    private static final String SEARCH_NOT_FOUND_MSG = "Crosshair not found. Check your spelling or try a more general query.";
 
     public RetconResponder() {
         super();
@@ -29,7 +28,7 @@ public class RetconResponder extends CommandResponder {
 
     @Override
     public boolean requiresPrefix() {
-        return true;
+        return false;
     }
 
     @Override
@@ -38,6 +37,10 @@ public class RetconResponder extends CommandResponder {
     }
 
     private Response respondToCrosshairGet(String params) {
+        if (params.isEmpty()) {
+            return new StringResponse(Ut.ERR_MISSING_PARAMS);
+        }
+
         List<String> matchingNames = new ArrayList<>();
 
         System.out.println("chget into method");

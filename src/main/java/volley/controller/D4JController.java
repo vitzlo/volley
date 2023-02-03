@@ -46,6 +46,7 @@ public class D4JController implements VolleyController {
     }
 
     private Publisher<Object> readMessage(MessageCreateEvent event) {
+        System.out.println("in controller read msg");
         Message message = event.getMessage();
 
         Response response = manager.respondToMessage(message);
